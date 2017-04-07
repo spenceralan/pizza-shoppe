@@ -15,18 +15,54 @@
 
       <div class="row" id="headerDisplay">
         <h1>back alley leftover pizza shoppe</h1>
+        <p>we find leftover pizza so you dont have to</p>
       </div>
 
       <div class="row" id="orderDisplay">
-
+        <div class="col-md-5">
+          <h2>slim pickings</h2>
+          <hr>
+          <select required class="custom-select form-control" id="pizzaQuantity">
+            <option selected disabled>how much do you want?</option>
+            <option value="slice">single slice</option>
+            <option value="half">half-eaten pizza</option>
+            <option value="whole">whole pizza</option>
+            <option value="leftover">first available</option>
+          </select>
+          <hr>
+          <div class="pizzaTopping">
+            <select class="custom-select form-control ingredients">
+              <option selected disabled>topping preference</option>
+              <option value="egg">egg</option>
+              <option value="corn">corn</option>
+              <option value="peach slices">peach slices</option>
+              <option value="iceburg lettuce">iceburg lettuce</option>
+              <option value="anchovies">anchovies</option>
+              <option value="artichoke">artichoke</option>
+              <option value="game hen">game hen</option>
+              <option value="figs">figs</option>
+              <option value="oysters">oysters</option>
+              <option value="lemon">lemon</option>
+            </select>
+          </div>
+          <hr>
+          <button type="button" class="btn btn-default" id="addIngredientButton">add topping</button>
+          <button type="button" class="btn btn-default">add pizza to order</button>
+          <button type="button" class="btn btn-default">start over</button>
+          <hr>
+          <button type="button" class="btn btn-danger">checkout</button>
+        </div>
+        <div class="col-md-7">
+          <h2>pizza order display</h2>
+        </div>
       </div>
 
       <div class="row" id="summaryDisplay">
-
+        <h2>review your order</h2>
       </div>
 
       <div class="row" id="resultsDisplay">
-
+        <h2>your order has been placed!</h2>
       </div>
 
 

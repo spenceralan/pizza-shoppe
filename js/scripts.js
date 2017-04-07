@@ -52,13 +52,6 @@
         return PICKUP;
       }
     }
-    pizzasPrice() {
-      let price = 0
-      this.pizzas.forEach(function(pizza) {
-        price += this.pizzaPrice(pizza);
-      });
-      return price;
-    }
     totalPrice() {
       return this.subtotal + this.deliveryPrice();
     }
@@ -71,7 +64,7 @@
     leftover: 0,
   };
 
-  const TOPPINGS = ["egg", "corn", "peach slices", "iceburg lettuce", "anchovies", "artichoke", "quail", "figs", "oysters", "lemmon"]
+  const TOPPINGS = ["egg", "corn", "peach slices", "iceburg lettuce", "anchovies", "artichoke", "game hen", "figs", "oysters", "lemon"]
 
   //test data
 
@@ -97,7 +90,31 @@
 
   //frontend
 
+  const addIngredient = function() {
+    $(".pizzaTopping").append(`<select class="custom-select form-control ingredients">
+                                <option selected disabled>topping preference</option>
+                                <option value="egg">egg</option>
+                                <option value="corn">corn</option>
+                                <option value="peach slices">peach slices</option>
+                                <option value="iceburg lettuce">iceburg lettuce</option>
+                                <option value="anchovies">anchovies</option>
+                                <option value="artichoke">artichoke</option>
+                                <option value="game hen">game hen</option>
+                                <option value="figs">figs</option>
+                                <option value="oysters">oysters</option>
+                                <option value="lemon">lemon</option>
+                              </select>`)
+  }
+
   $(document).ready(function(){
+    // let quantity = $("#pizzaQuantity").val();
+    // let topping = $(".ingredient").val();
+
+    $("#addIngredientButton").click(function(){
+      addIngredient();
+    });
+
+    
 
   });
 // })();
