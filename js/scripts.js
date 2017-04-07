@@ -133,10 +133,12 @@
       $("#checkoutButton").click(function(){
         $("#orderDisplay").hide();
         $("#summaryDisplay").show();
-        $("#summaryDisplay").prepend(`
+        $("#summaryDisplay").empty();
+        $("#summaryDisplay").append(`
           <h2>review your order</h2>
           <h3>You have ${cart.pizzas.length} pizza in your cart</h3>
           <p>Your total is $${price.totalPrice()}</p>
+          <button class="btn btn-danger" id="orderButton">place order</button>
         `);
         $("#orderButton").click(function(){
           $("#summaryDisplay").hide();
