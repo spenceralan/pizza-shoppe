@@ -23,13 +23,13 @@
           <h2>slim pickings</h2>
           <hr>
           <select required class="custom-select form-control" id="deliveryOption">
-            <option selected disabled>delivery or carry out?</option>
+            <option selected disabled value="none">delivery or carry out?</option>
             <option value="delivery">delivery</option>
             <option value="pickup">carry out</option>
           </select>
           <hr>
           <select required class="custom-select form-control" id="pizzaQuantity">
-            <option selected disabled>how much do you want?</option>
+            <option selected disabled value="none">how much do you want?</option>
             <option value="slice">single slice</option>
             <option value="half">half-eaten pizza</option>
             <option value="whole">whole pizza</option>
@@ -54,9 +54,9 @@
           <hr>
           <button type="button" class="btn btn-default" id="addIngredientButton">add topping</button>
           <button type="button" class="btn btn-default" id="addPizzaButton">add pizza to order</button>
-          <button type="button" class="btn btn-default">start over</button>
+          <button type="button" class="btn btn-default" id="resetButton">start over</button>
           <hr>
-          <button type="button" class="btn btn-danger">checkout</button>
+          <button type="button" class="btn btn-danger" id="checkoutButton">checkout</button>
         </div>
         <div class="col-md-7" id="buildPizzaDisplay">
           <h2>we will try our hardest to find the right fit</h2>
@@ -65,7 +65,8 @@
       </div>
 
       <div class="row" id="summaryDisplay">
-        <h2>review your order</h2>
+
+        <button class="btn btn-danger" id="orderButton">place order</button>
       </div>
 
       <div class="row" id="resultsDisplay">

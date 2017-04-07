@@ -9,16 +9,6 @@
     leftover: 0,
   };
 
-  class User {
-    constructor(name, streetAddress, city, state, zipCode) {
-      this.name = name;
-      this.streetAddress = streetAddress;
-      this.city = city;
-      this.state = state;
-      this.zipCode = zipCode;
-    }
-  }
-
   class Pizza {
     constructor(size) {
       this.size = size;
@@ -29,20 +19,17 @@
     }
   }
 
-  class Topping {
-    constructor(type, quantity) {
-      this.type = type;
-      this.quantity = 1;
-    }
+  function Topping(type, quantity) {
+    this.type = type;
+    this.quantity = 1;
   }
 
-  class Cart {
-    constructor(){
-      this.pizzas = [];
-    }
-    addToCart(pizza, price) {
-      this.pizzas.push([pizza, price]);
-    }
+  function Cart() {
+    this.pizzas = [];
+  }
+
+  Cart.prototype.addToCart = function(pizza, price) {
+    this.pizzas.push([pizza, price]);
   }
 
   class Price {
@@ -95,10 +82,25 @@
                               </select>`)
   }
 
+  const refresh = function() {
+    $(".pizzaTopping").empty();
+    addIngredient();
+    pizza = new Pizza;
+    $("#pizzaQuantity").val("none");
+  }
+
   $(document).ready(function(){
 
     let cart = new Cart();
     let price = new Price();
+
+    $("#resetButton").click(function(){
+      refresh();
+      cart = new Cart();
+      price = new Price();
+      $("#ingredientsDisplay").empty();
+      $("#deliveryOption").val("none")
+    });
 
     $("#deliveryOption").change(function(){
       price.deliveryMethod = $("#deliveryOption").val();
@@ -124,8 +126,23 @@
         $("#ingredientsDisplay").append(`<li>${pizza[0].size}: $${pizza[1]}</li>`);
       });
 
+      $("#checkoutButton").show();
 
+      refresh();
 
+      $("#checkoutButton").click(function(){
+        $("#orderDisplay").hide();
+        $("#summaryDisplay").show();
+        $("#summaryDisplay").prepend(`
+          <h2>review your order</h2>
+          <h3>You have ${cart.pizzas.length} pizza in your cart</h3>
+          <p>Your total is $${price.totalPrice()}</p>
+        `);
+        $("#orderButton").click(function(){
+          $("#summaryDisplay").hide();
+          $("#resultsDisplay").show();
+        });
+      });
     });
 
 

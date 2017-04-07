@@ -10,3 +10,7 @@ h1 {
 .custom-select {
   width: 200px;
 }
+
+#checkoutButton, #summaryDisplay, #resultsDisplay {
+  display: none;
+}
