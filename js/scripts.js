@@ -2,6 +2,13 @@
 
   //backend
 
+  const SIZES = {
+    slice: 5,
+    half: 10,
+    whole: 15,
+    leftover: 0,
+  };
+
   class User {
     constructor(name, streetAddress, city, state, zipCode) {
       this.name = name;
@@ -25,7 +32,7 @@
   class Topping {
     constructor(type, quantity) {
       this.type = type;
-      this.quantity = quantity;
+      this.quantity = 1;
     }
   }
 
@@ -57,36 +64,9 @@
     }
   }
 
-  const SIZES = {
-    slice: 5,
-    half: 10,
-    whole: 15,
-    leftover: 0,
-  };
+
 
   const TOPPINGS = ["egg", "corn", "peach slices", "iceburg lettuce", "anchovies", "artichoke", "game hen", "figs", "oysters", "lemon"]
-
-  //test data
-
-  let price = new Price("delivery");
-
-  let pizza1 = new Pizza("whole");
-  let topping1 = new Topping("egg", 1);
-  let topping2 = new Topping("olive", 1);
-  pizza1.addTopping(topping1);
-  pizza1.addTopping(topping2);
-
-  let pizza2 = new Pizza("slice");
-  let topping3 = new Topping("lettuce", 1);
-  pizza2.addTopping(topping3);
-
-  console.log(price.addPizza(pizza1));
-  console.log(price.addPizza(pizza2));
-  console.log(price.subtotal)
-  console.log(price.totalPrice())
-
-
-
 
   //frontend
 
@@ -114,7 +94,17 @@
       addIngredient();
     });
 
-    
+    $("#addPizzaButton").click(function(){
+      let pizzaQuantity = $("#pizzaQuantity").val();
+      let pizza = new Pizza(pizzaQuantity);
+
+      $(".ingredients").each(function() {
+        let ingredient = $(this).val();
+        let topping = new Topping(ingredient, 1);
+        pizza.addTopping(topping);
+      });
+      console.log(pizza);
+    });
 
   });
 // })();
