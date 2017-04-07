@@ -46,8 +46,8 @@
   }
 
   class Price {
-    constructor(deliveryMethod) {
-      this.deliveryMethod = deliveryMethod;
+    constructor() {
+      this.deliveryMethod;
       this.subtotal = 0;
     }
     addPizza(pizza) {
@@ -96,11 +96,13 @@
   }
 
   $(document).ready(function(){
-    // let quantity = $("#pizzaQuantity").val();
-    // let topping = $(".ingredient").val();
 
-    cart = new Cart;
-    price = new Price;
+    let cart = new Cart();
+    let price = new Price();
+
+    $("#deliveryOption").change(function(){
+      price.deliveryMethod = $("#deliveryOption").val();
+    });
 
     $("#addIngredientButton").click(function(){
       addIngredient();
@@ -114,9 +116,18 @@
         let ingredient = $(this).val();
         let topping = new Topping(ingredient, 1);
         pizza.addTopping(topping);
-        cart.addToCart(pizza, price.addPizza(pizza));
       });
+
+      $("#ingredientsDisplay").empty();
+      cart.addToCart(pizza, price.addPizza(pizza));
+      cart.pizzas.forEach(function(pizza){
+        $("#ingredientsDisplay").append(`<li>${pizza[0].size}: $${pizza[1]}</li>`);
+      });
+
+
+
     });
+
 
   });
 // })();
