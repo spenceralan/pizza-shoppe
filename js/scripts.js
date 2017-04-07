@@ -3,17 +3,13 @@
   //backend
 
   class User {
-    constructor(...args) {
+    constructor(name, streetAddress, city, state, zipCode) {
       this.name = name;
       this.streetAddress = streetAddress;
       this.city = city;
       this.state = state;
       this.zipCode = zipCode;
     }
-  }
-
-  const price = function(pizza) {
-
   }
 
   class Pizza {
@@ -33,10 +29,30 @@
     }
   }
 
-  const SIZES = ["slice", "half-eaten", "whole", "whatever is left"]
+  class Price {
+    constructor(deliveryMethod) {
+      this.deliveryMethod = deliveryMethod;
+      this.pizzas = [];
+    }
+    addPizza(pizza) {
+      this.pizzas.push(pizza);
+    }
+    totalPrice() {
+      let price = 0;
+      this.pizzas.forEach(function(){
+        //analyze pizza objects for price
+      });
+      return price;
+    }
+  }
 
-  const TOPPINGS = ["extra cheese", "pepperoni", "anchovies", "black olives", "onion", "mushroom", "sausage", "bell pepper", "bacon", "spinach", "pineapple"]
+  const SIZES = ["slice", "half-eaten pie", "whole pie", "whatever is left"]
+
+  const TOPPINGS = ["egg", "corn", "peach slices", "iceburg lettuce", "anchovies", "artichoke", "quail", "figs", "oysters", "lemmon"]
 
   //frontend
 
+  $(document).ready(function(){
+    
+  });
 })();
