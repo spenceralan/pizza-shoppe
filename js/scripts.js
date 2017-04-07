@@ -32,10 +32,16 @@
   class Price {
     constructor(deliveryMethod) {
       this.deliveryMethod = deliveryMethod;
-      this.pizzas = [];
+      this.subtotal = 0;
     }
     addPizza(pizza) {
-      this.pizzas.push(pizza);
+      let price = 0;
+      price += SIZES[pizza.size];
+      pizza.toppings.forEach(function(topping){
+        price += topping.quantity;
+      });
+      this.subtotal += price;
+      return price;
     }
     deliveryPrice() {
       const DELIVERY = 5;
@@ -46,29 +52,15 @@
         return PICKUP;
       }
     }
-    pizzaPrice(pizza) {
-      const getPrice = function(pizza) {
-        price += SIZES[pizza.size];
-        pizza.toppings.forEach(function(topping){
-          // use topping quantity for price scale
-          price += topping.quantity;
-        });
-      };
-      let price = 0;
-      getPrice(pizza);
+    pizzasPrice() {
+      let price = 0
+      this.pizzas.forEach(function(pizza) {
+        price += this.pizzaPrice(pizza);
+      });
       return price;
     }
-    pizzasPrice() {
-      let prices = 0
-      (function() {
-        this.pizzas.forEach(function(pizza) {
-          price += pizzaPrice(pizza);
-        });
-      })();
-      return prices;
-    }
     totalPrice() {
-      return this.pizzasPrice() + this.deliveryPrice();
+      return this.subtotal + this.deliveryPrice();
     }
   }
 
@@ -83,13 +75,23 @@
 
   //test data
 
-  price = new Price("delivery");
-  topping1 = new Topping("egg", 1);
-  topping2 = new Topping("olive", 1);
-  pizza = new Pizza("whole");
-  pizza.addTopping(topping1);
-  pizza.addTopping(topping2);
-  console.log(price.pizzaPrice(pizza));
+  let price = new Price("delivery");
+
+  let pizza1 = new Pizza("whole");
+  let topping1 = new Topping("egg", 1);
+  let topping2 = new Topping("olive", 1);
+  pizza1.addTopping(topping1);
+  pizza1.addTopping(topping2);
+
+  let pizza2 = new Pizza("slice");
+  let topping3 = new Topping("lettuce", 1);
+  pizza2.addTopping(topping3);
+
+  console.log(price.addPizza(pizza1));
+  console.log(price.addPizza(pizza2));
+  console.log(price.subtotal)
+  console.log(price.totalPrice())
+
 
 
 
