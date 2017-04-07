@@ -36,6 +36,15 @@
     }
   }
 
+  class Cart {
+    constructor(){
+      this.pizzas = [];
+    }
+    addToCart(pizza, price) {
+      this.pizzas.push([pizza, price]);
+    }
+  }
+
   class Price {
     constructor(deliveryMethod) {
       this.deliveryMethod = deliveryMethod;
@@ -90,6 +99,9 @@
     // let quantity = $("#pizzaQuantity").val();
     // let topping = $(".ingredient").val();
 
+    cart = new Cart;
+    price = new Price;
+
     $("#addIngredientButton").click(function(){
       addIngredient();
     });
@@ -102,8 +114,8 @@
         let ingredient = $(this).val();
         let topping = new Topping(ingredient, 1);
         pizza.addTopping(topping);
+        cart.addToCart(pizza, price.addPizza(pizza));
       });
-      console.log(pizza);
     });
 
   });
