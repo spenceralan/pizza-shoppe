@@ -14,3 +14,7 @@ h1 {
 #checkoutButton, #summaryDisplay, #resultsDisplay {
   display: none;
 }
+
+p {
+  font-size: 20px;
+}
