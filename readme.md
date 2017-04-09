@@ -1,4 +1,4 @@
-# Ping Pong Project - Code Review - Epicodus
+# Pizza Shoppe - Code Review - Epicodus
 
 For this project I created a web app that will query a user for their pizza order (size, quantity, toppings), compile the data using object oriented business logic, and display the user's order with a total price. This webpage was built using HTML, CSS, Bootstrap, JavaScript, and JQuery.
 
